@@ -10,10 +10,11 @@ export const userMiddleware = (
     const header = req.headers["authorization"];
     const decoded  = jwt.verify(header as string, JWT_PASSWORD);
     if (decoded){
-        req.userId: any = (decoded as { id: string }).id;
+        //@ts-ignore
+        req.userId = decoded.id
     } else {
         res.status(403).json({
             message:"You are not logged in"
         })
     }
-}
+} 
