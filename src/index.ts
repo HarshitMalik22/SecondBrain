@@ -2,8 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { UserModel } from "./db.js";
-
-const JWT_PASSWORD = "!2323";
+import { JWT_PASSWORD } from "./config.js";
 
 const app = express();
 app.use(express.json());
@@ -52,7 +51,8 @@ app.post("/api/v1/signin", async (req, res) => {
 })
 
 app.post("/app/ve/content", (req, res) => {
-
+    const link = req.body.link;
+    const type = req.body.type;
 })
 
 app.get("/api/ve/content", (req,res) => {
