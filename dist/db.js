@@ -1,5 +1,8 @@
 import mongoose, { model, Schema } from "mongoose";
-mongoose.connect("mongodb+srv://harshitmalik29:harshitmalik22@secondbrain.duv87yl.mongodb.net/?retryWrites=true&w=majority&appName=SecondBrain");
+import dotenv from "dotenv";
+dotenv.config();
+const MONGO_URI = process.env.MONGO_URI;
+mongoose.connect(MONGO_URI);
 const UserSchema = new Schema({
     username: { type: String, unique: true },
     password: { type: String },
