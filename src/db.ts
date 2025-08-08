@@ -1,13 +1,16 @@
-import mongoose, {model, Schema} from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-mongoose.connect("mongodb+srv://harshitmalik29:harshitmalik22@secondbrain.duv87yl.mongodb.net/?retryWrites=true&w=majority&appName=SecondBrain")
+const MONGO_URI = process.env.MONGO_URI as string;
+mongoose.connect(MONGO_URI);
 
 const UserSchema  = new Schema({
     username: {type: String, unique: true},
     password: {type: String}, 
 })
 
-export const UserModel = model( "User", UserSchema);
+export const UserModel = model("User", UserSchema);
 
 const ContentSchema = new Schema({
     title: String,
@@ -16,4 +19,4 @@ const ContentSchema = new Schema({
     userId: {type: mongoose.Types.ObjectId, ref: 'User', required: true}
 })
 
-export const ContentModel = model("Content", ContentSchema); 
+export const ContentModel = model("Content", ContentSchema);
