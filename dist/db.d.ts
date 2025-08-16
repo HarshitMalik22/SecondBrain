@@ -26,6 +26,81 @@ export declare const UserModel: mongoose.Model<{
 } & {
     __v: number;
 }>>;
+export declare const LinkModel: mongoose.Model<{
+    userId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
+    hash?: string | null;
+}, {}, {}, {}, mongoose.Document<unknown, {}, {
+    userId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
+    hash?: string | null;
+}, {}, mongoose.DefaultSchemaOptions> & {
+    userId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
+    hash?: string | null;
+} & {
+    _id: mongoose.Types.ObjectId;
+} & {
+    __v: number;
+}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+    userId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
+    hash?: string | null;
+}, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
+    userId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
+    hash?: string | null;
+}>, {}, mongoose.ResolveSchemaOptions<mongoose.DefaultSchemaOptions>> & mongoose.FlatRecord<{
+    userId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
+    hash?: string | null;
+}> & {
+    _id: mongoose.Types.ObjectId;
+} & {
+    __v: number;
+}>>;
 export declare const ContentModel: mongoose.Model<{
     tags: mongoose.Types.DocumentArray<{
         prototype?: unknown;
@@ -55,6 +130,15 @@ export declare const ContentModel: mongoose.Model<{
     link?: unknown;
     title?: unknown;
     userId?: {
+        prototype?: unknown;
+        cacheHexString?: unknown;
+        generate?: any;
+        createFromTime?: any;
+        createFromHexString?: any;
+        createFromBase64?: any;
+        isValid?: any;
+    } | null;
+    authorId?: {
         prototype?: unknown;
         cacheHexString?: unknown;
         generate?: any;
@@ -100,6 +184,15 @@ export declare const ContentModel: mongoose.Model<{
         createFromBase64?: any;
         isValid?: any;
     } | null;
+    authorId?: {
+        prototype?: unknown;
+        cacheHexString?: unknown;
+        generate?: any;
+        createFromTime?: any;
+        createFromHexString?: any;
+        createFromBase64?: any;
+        isValid?: any;
+    } | null;
 }, {}, mongoose.DefaultSchemaOptions> & {
     tags: mongoose.Types.DocumentArray<{
         prototype?: unknown;
@@ -137,6 +230,15 @@ export declare const ContentModel: mongoose.Model<{
         createFromBase64?: any;
         isValid?: any;
     } | null;
+    authorId?: {
+        prototype?: unknown;
+        cacheHexString?: unknown;
+        generate?: any;
+        createFromTime?: any;
+        createFromHexString?: any;
+        createFromBase64?: any;
+        isValid?: any;
+    } | null;
 } & {
     _id: mongoose.Types.ObjectId;
 } & {
@@ -152,6 +254,15 @@ export declare const ContentModel: mongoose.Model<{
         isValid?: {} | null;
     }[];
     userId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
+    authorId: {
         prototype?: mongoose.Types.ObjectId | null;
         cacheHexString?: unknown;
         generate?: {} | null;
@@ -181,6 +292,15 @@ export declare const ContentModel: mongoose.Model<{
         createFromBase64?: {} | null;
         isValid?: {} | null;
     };
+    authorId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
     link?: string | null;
     title?: string | null;
 }>, {}, mongoose.ResolveSchemaOptions<mongoose.DefaultSchemaOptions>> & mongoose.FlatRecord<{
@@ -194,6 +314,15 @@ export declare const ContentModel: mongoose.Model<{
         isValid?: {} | null;
     }[];
     userId: {
+        prototype?: mongoose.Types.ObjectId | null;
+        cacheHexString?: unknown;
+        generate?: {} | null;
+        createFromTime?: {} | null;
+        createFromHexString?: {} | null;
+        createFromBase64?: {} | null;
+        isValid?: {} | null;
+    };
+    authorId: {
         prototype?: mongoose.Types.ObjectId | null;
         cacheHexString?: unknown;
         generate?: {} | null;

@@ -1,10 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
-import { UserModel } from "./db.js";
+import { LinkModel, UserModel } from "./db.js";
 import { JWT_PASSWORD } from "./config.js";
 import { userMiddleware } from "./middleware.js";
 import { ContentModel } from "./db.js";
+import { random } from "./utils.js";
 
 const app = express();
 app.use(express.json());
@@ -93,12 +94,44 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
     })
 })
 
-app.post("/api/v1/brain/share", (req, res) => {
-
+app.post("/api/v1/brain/share", userMiddleware,(req, res) => {
+    const share = req.body.share;
+    if (share) {
+        LinkModel.create({
+            userId: req.userId,
+            hash: random(10)
+        })
+    } else {
+        LinkModel.deleteOne({
+            userId: req.userId
+        });
+    }
 })
 
-app.get("/api/v1/brain/:shareLink", (req, res) => {
-    
+app.get("/api/v1/brain/:shareLink", async (req, res) => {
+    const hash = req.params.shareLink;
+    const link = await LinkModel.findOne({
+        hash
+    })
+
+    if (!link){
+        res.status(411).json({
+            message: "Sorry incorrect input"
+        })
+        return;
+    }
+    // userId
+    const content = await ContentModel.find({
+        userId: link.userId
+    })
+    const user = await UserModel.findOne({
+        userId: link.userId
+    })
+
+    res.json({
+        username: user?.username,
+        content: content
+    })
 })
 
 app.listen(3000);
