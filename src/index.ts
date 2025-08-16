@@ -98,11 +98,13 @@ app.post("/api/v1/brain/share", userMiddleware,(req, res) => {
     const share = req.body.share;
     if (share) {
         LinkModel.create({
+            //@ts-ignore
             userId: req.userId,
             hash: random(10)
         })
     } else {
         LinkModel.deleteOne({
+            //@ts-ignore
             userId: req.userId
         });
     }
@@ -128,8 +130,15 @@ app.get("/api/v1/brain/:shareLink", async (req, res) => {
         userId: link.userId
     })
 
+    if (!user){
+        res.status(411).json({
+            message: "User not found"
+        })
+        return;
+    }
+
     res.json({
-        username: user?.username,
+        username: user.username,
         content: content
     })
 })
