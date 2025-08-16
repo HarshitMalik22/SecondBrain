@@ -6,6 +6,7 @@ export const userMiddleware = (req, res, next) => {
     if (decoded) {
         //@ts-ignore
         req.userId = decoded.id;
+        next(); // Add this line to continue to next middleware
     }
     else {
         res.status(403).json({

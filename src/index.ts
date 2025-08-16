@@ -56,17 +56,20 @@ app.post("/api/v1/signin", async (req, res) => {
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
     const link = req.body.link;
     const type = req.body.type; 
+    //@ts-ignore
+    const userId = req.userId;
+    
     await ContentModel.create({
         link,
         type,
-        //@ts-ignore
-        userId: req.userId,
+        userId: userId,
+        authorId: userId, // Set both userId and authorId to the same value
         tags: []
-    })
+    });
 
     res.json({
         message: "Content added"
-    })
+    });
 })
 
 app.get("/api/v1/content", userMiddleware, async (req,res) => {

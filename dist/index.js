@@ -50,11 +50,13 @@ app.post("/api/v1/signin", async (req, res) => {
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
     const link = req.body.link;
     const type = req.body.type;
+    //@ts-ignore
+    const userId = req.userId;
     await ContentModel.create({
         link,
         type,
-        //@ts-ignore
-        userId: req.userId,
+        userId: userId,
+        authorId: userId, // Set both userId and authorId to the same value
         tags: []
     });
     res.json({
@@ -82,9 +84,19 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
         message: "Content deleted"
     });
 });
-app.post("/api/v1/brain/share", userMiddleware, (req, res) => {
+app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
     const share = req.body.share;
     if (share) {
+        const existingLink = await LinkModel.findOne({
+            //@ts-ignore
+            userId: req.userId
+        });
+        if (existingLink) {
+            res.json({
+                hash: existingLink.hash
+            });
+            return;
+        }
         const hash = random(10);
         LinkModel.create({
             //@ts-ignore
