@@ -94,19 +94,36 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
     })
 })
 
-app.post("/api/v1/brain/share", userMiddleware,(req, res) => {
+app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
     const share = req.body.share;
     if (share) {
+        const existingLink = await LinkModel.findOne({
+            //@ts-ignore
+            userId: req.userId
+        });
+        if (existingLink){
+            res.json({
+                hash: existingLink.hash
+            })
+            return;
+        }
+        const hash = random(10);
         LinkModel.create({
             //@ts-ignore
             userId: req.userId,
-            hash: random(10)
+            hash: hash
+        })
+        res.json({
+            message: "/share" + hash
         })
     } else {
         LinkModel.deleteOne({
             //@ts-ignore
             userId: req.userId
         });
+        res.json({
+            message: "Removed Link"
+        })
     }
 })
 

@@ -85,16 +85,23 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
 app.post("/api/v1/brain/share", userMiddleware, (req, res) => {
     const share = req.body.share;
     if (share) {
+        const hash = random(10);
         LinkModel.create({
             //@ts-ignore
             userId: req.userId,
-            hash: random(10)
+            hash: hash
+        });
+        res.json({
+            message: "/share" + hash
         });
     }
     else {
         LinkModel.deleteOne({
             //@ts-ignore
             userId: req.userId
+        });
+        res.json({
+            message: "Removed Link"
         });
     }
 });
